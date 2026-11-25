@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<!-- lang="vi" khai báo ngôn ngữ trang → hỗ trợ screen reader & SEO -->
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio CV của Phan Huy Hoàng – Frontend Developer. Đam mê Bóng đá, Ca hát, Thể thao. Dự án, kỹ năng và thông tin liên hệ." />
+  <meta name="author" content="Phan Huy Hoàng" />
+  <title>Phan Huy Hoàng (HoàngPinky) · Cyber Pink Portfolio</title>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Liên kết tới file CSS tách rời (yêu cầu của bài, đặt trước để được nâng cấp bởi CSS Cyber bên dưới) -->
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <style>
+    :root {
+      --bg-deep: #09030d;
+      --pink: #ff1e8a;
+      --hot-pink: #ff66c4;
+      --purple: #b5179e;
+      --cyan: #00f5d4;
+      --gold: #ffbe0b;
+      --blue: #ff4d94;
+      --card-bg: rgba(22, 8, 30, 0.78);
+    }
+
+    body[data-theme="sakura"] {
+      --bg-deep: #0d0414;
+      --pink: #ff4da6;
+      --hot-pink: #ffb3d9;
+      --purple: #9d4edd;
+      --cyan: #ff85c0;
+      --gold: #ffe066;
+    }
+
+    body[data-theme="striker"] {
+      --bg-deep: #08040f;
+      --pink: #f72585;
+      --hot-pink: #ff0055;
+      --purple: #7209b7;
+      --cyan: #4cc9f0;
+      --gold: #ffbe0b;
+    }
+
+    * {
+      box-sizing: border-box !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* KHÓA CỨNG NỀN TỐI TONE HỒNG ĐÊM - Chống styles.css biến .hero hoặc .section thành màu trắng */
+    html, body, main, .hero, .section, .section-muted, footer {
+      background-color: transparent !important;
+      background-image: none !important;
+      color: #fdf2f8 !important;
+    }
+
+    body {
+      background-color: var(--bg-deep) !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Quầng sáng Đa Sắc Tone Hồng Rực Rỡ (Pink Aurora Orbs) phía sau */
+    .aurora-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 30, 138, 0.42), transparent 38%),
+        radial-gradient(circle at 88% 20%, rgba(255, 102, 196, 0.28), transparent 36%),
+        radial-gradient(circle at 50% 55%, rgba(181, 23, 158, 0.32), transparent 46%),
+        radial-gradient(circle at 20% 85%, rgba(0, 245, 212, 0.2), transparent 35%),
+        linear-gradient(180deg, #08020c 0%, #14051d 50%, #07020a 100%);
+    }
+
+    /* Lưới Cyber 3D Hồng Neon */
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 30, 138, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 102, 196, 0.06) 1px, transparent 1px);
+      background-size: 45px 45px;
+    }
+
+    /* Canvas Hạt Neon tương tác chuột */
+    #cyberCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .site-header, main, footer, .cyber-marquee {
+      position: relative;
+      z-index: 5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px !important;
+      margin: 0 auto !important;
+      padding: 0 22px !important;
+    }
+
+    h1, h2, h3, .brand-name {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+
+    ul {
+      list-style: none !important;
+    }
+
+    /* ================= HEADER ================= */
+    .site-header {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 100 !important;
+      background: rgba(15, 4, 22, 0.85) !important;
+      backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(255, 30, 138, 0.45) !important;
+      box-shadow: 0 4px 35px rgba(255, 30, 138, 0.25) !important;
+      padding: 14px 0 !important;
+    }
+
+    .header-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      flex-wrap: wrap !important;
+      gap: 16px !important;
+    }
+
+    .brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+    }
+
+    .brand-mark {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 12px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-weight: 800 !important;
+      font-size: 20px !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--cyan)) !important;
+      box-shadow: 0 0 22px rgba(255, 30, 138, 0.75) !important;
+    }
+
+    .brand-name {
+      font-size: 19px !important;
+      font-weight: 700 !important;
+      background: linear-gradient(90deg, #fff, var(--hot-pink), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--hot-pink) !important;
+      letter-spacing: 2px;
+    }
+
+    .nav-list {
+      display: flex !important;
+      align-items: center !important;
+      gap: 24px !important;
+      flex-wrap: wrap !important;
+    }
+
+    .nav-list a {
+      color: #fce7f3 !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      position: relative;
+      padding: 6px 0;
+      transition: 0.3s;
+    }
+
+    .nav-list a:hover {
+      color: var(--hot-pink) !important;
+      text-shadow: 0 0 14px var(--pink);
+    }
+
+    .theme-btn {
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--pink);
+      background: linear-gradient(135deg, rgba(255, 30, 138, 0.3), rgba(181, 23, 158, 0.3));
+      color: #fff !important;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 18px rgba(255, 30, 138, 0.5);
+      transition: 0.3s;
+    }
+
+    .theme-btn:hover {
+      transform: scale(1.06);
+      border-color: var(--cyan);
+      box-shadow: 0 0 25px var(--pink);
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      padding: 70px 0 60px !important;
+    }
+
+    .hero-inner {
+      display: grid !important;
+      grid-template-columns: 1.25fr 0.85fr !important;
+      gap: 48px !important;
+      align-items: center !important;
+    }
+
+    .eyebrow {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 8px 18px !important;
+      border-radius: 999px !important;
+      background: rgba(255, 30, 138, 0.18) !important;
+      border: 1px solid rgba(255, 102, 196, 0.6) !important;
+      color: #ff99d6 !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.5px !important;
+      margin-bottom: 18px !important;
+      box-shadow: 0 0 22px rgba(255, 30, 138, 0.35);
+    }
+
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 12px var(--pink);
+      animation: pulseGlow 1.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    /* TÊN RỰC RỠ GRADIENT HỒNG - CYAN - VÀNG CHUYỂN ĐỘNG */
+    .hero-title {
+      font-size: clamp(40px, 5.5vw, 64px) !important;
+      font-weight: 800 !important;
+      line-height: 1.12 !important;
+      margin-bottom: 16px !important;
+      background: linear-gradient(
+        90deg,
+        #ff1e8a 0%,
+        #ff99d6 25%,
+        #00f5d4 50%,
+        #ffbe0b 75%,
+        #ff1e8a 100%
+      ) !important;
+      background-size: 200% auto !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      animation: shineText 4.5s linear infinite !important;
+      filter: drop-shadow(0 6px 28px rgba(255, 30, 138, 0.5));
+    }
+
+    @keyframes shineText {
+      to { background-position: 200% center; }
+    }
+
+    .hero-role {
+      font-size: 21px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      margin-bottom: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      flex-wrap: wrap !important;
+    }
+
+    .typewriter-text {
+      color: var(--hot-pink) !important;
+      text-shadow: 0 0 16px rgba(255, 30, 138, 0.7);
+      border-right: 2px solid var(--cyan);
+      padding-right: 6px;
+    }
+
+    .kanji-badge {
+      font-size: 13px !important;
+      padding: 5px 14px !important;
+      border-radius: 8px !important;
+      background: linear-gradient(135deg, var(--pink), var(--purple)) !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      box-shadow: 0 0 18px rgba(255, 30, 138, 0.6);
+    }
+
+    .hero-desc {
+      color: #f5d0fe !important;
+      font-size: 16px !important;
+      margin-bottom: 26px !important;
+      max-width: 580px !important;
+      line-height: 1.75 !important;
+    }
+
+    .hero-desc strong {
+      color: var(--hot-pink) !important;
+      text-shadow: 0 0 10px rgba(255, 30, 138, 0.4);
+    }
+
+    /* 3 Ô THỐNG KÊ ĐA SẮC */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 520px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: rgba(28, 10, 38, 0.88) !important;
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card.pink-stat { border-color: rgba(255, 30, 138, 0.65); box-shadow: 0 8px 24px -6px rgba(255, 30, 138, 0.45); }
+    .stat-card.cyan-stat { border-color: rgba(0, 245, 212, 0.6); box-shadow: 0 8px 24px -6px rgba(0, 245, 212, 0.35); }
+    .stat-card.gold-stat { border-color: rgba(255, 190, 11, 0.6); box-shadow: 0 8px 24px -6px rgba(255, 190, 11, 0.35); }
+
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .pink-stat .stat-num { color: var(--hot-pink) !important; }
+    .cyan-stat .stat-num { color: var(--cyan) !important; }
+    .gold-stat .stat-num { color: var(--gold) !important; }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: #fce7f3 !important;
+    }
+
+    /* NÚT BẤM CYBER */
+    .hero-actions {
+      display: flex !important;
+      gap: 16px !important;
+      flex-wrap: wrap !important;
+    }
+
+    .btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 14px 28px !important;
+      border-radius: 14px !important;
+      font-weight: 700 !important;
+      font-size: 15px !important;
+      transition: all 0.3s ease !important;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--purple), #ff0055) !important;
+      background-size: 200% 200% !important;
+      color: #ffffff !important;
+      border: none !important;
+      box-shadow: 0 10px 30px -4px rgba(255, 30, 138, 0.75) !important;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.03) !important;
+      box-shadow: 0 14px 38px -2px rgba(255, 102, 196, 0.85) !important;
+    }
+
+    .btn-outline {
+      background: rgba(26, 8, 36, 0.9) !important;
+      color: var(--hot-pink) !important;
+      border: 1.5px solid var(--hot-pink) !important;
+      box-shadow: 0 0 20px rgba(255, 30, 138, 0.25) !important;
+    }
+
+    .btn-outline:hover {
+      background: var(--pink) !important;
+      color: #ffffff !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 0 30px var(--pink) !important;
+    }
+
+    /* KHUNG AVATAR HOLOGRAM 7 MÀU TONE HỒNG */
+    .hero-avatar {
+      display: flex !important;
+      justify-content: center !important;
+      position: relative !important;
+    }
+
+    .avatar-holo {
+      position: relative;
+      padding: 6px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--pink), var(--cyan), var(--gold), var(--purple), var(--pink));
+      background-size: 300% 300%;
+      animation: gradientBorder 4s ease infinite;
+      box-shadow:
+        0 0 45px rgba(255, 30, 138, 0.65),
+        0 0 80px rgba(181, 23, 158, 0.35);
+    }
+
+    @keyframes gradientBorder {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .avatar-holo img {
+      width: 320px !important;
+      height: 320px !important;
+      object-fit: cover !important;
+      border-radius: 23px !important;
+      display: block !important;
+      background: #1a0626;
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: rgba(16, 5, 24, 0.94);
+      border: 1px solid var(--pink);
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.65);
+      animation: floatY 3s ease-in-out infinite;
+    }
+
+    .floating-tag.top-right {
+      top: -14px;
+      right: -14px;
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 20px rgba(255, 190, 11, 0.4);
+    }
+
+    .floating-tag.bottom-left {
+      bottom: -14px;
+      left: -14px;
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+      animation-delay: 1.2s;
+    }
+
+    .floating-tag.mid-right {
+      bottom: 45px;
+      right: -24px;
+      border-color: var(--hot-pink);
+      color: var(--hot-pink);
+      box-shadow: 0 0 20px rgba(255, 30, 138, 0.5);
+      animation-delay: 2.2s;
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ================= DẢI BĂNG CHUYỀN CYBER MARQUEE ================= */
+    .cyber-marquee {
+      background: linear-gradient(90deg, rgba(255, 30, 138, 0.28), rgba(181, 23, 158, 0.25), rgba(0, 245, 212, 0.2));
+      border-top: 1px solid rgba(255, 30, 138, 0.5);
+      border-bottom: 1px solid rgba(255, 102, 196, 0.5);
+      padding: 13px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 0 30px rgba(255, 30, 138, 0.2);
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: scrollMarquee 22s linear infinite;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .marquee-track span {
+      margin: 0 24px;
+      color: var(--hot-pink);
+    }
+
+    @keyframes scrollMarquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ================= SECTIONS CHUNG ================= */
+    .section {
+      padding: 72px 0 !important;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      color: var(--hot-pink) !important;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 36px !important;
+      font-weight: 800 !important;
+      background: linear-gradient(90deg, #ffffff, var(--hot-pink), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      margin-bottom: 8px !important;
+    }
+
+    .section-sub {
+      color: #f5d0fe !important;
+      font-size: 15px !important;
+    }
+
+    /* ================= SKILLS ĐA SẮC KÈM THANH LEVEL ================= */
+    .skill-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+      gap: 22px !important;
+    }
+
+    .skill-chip {
+      background: var(--card-bg) !important;
+      border: 1px solid rgba(255, 102, 196, 0.22) !important;
+      border-radius: 18px !important;
+      padding: 22px !important;
+      transition: all 0.35s ease !important;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+    }
+
+    .skill-chip:hover {
+      transform: translateY(-6px) scale(1.01) !important;
+      border-color: var(--skill-color, var(--pink)) !important;
+      box-shadow: 0 12px 30px -8px var(--skill-color, var(--pink)) !important;
+    }
+
+    .skill-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .skill-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .skill-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--skill-color);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--skill-color);
+      box-shadow: 0 0 15px -3px var(--skill-color);
+    }
+
+    .skill-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff !important;
+    }
+
+    .skill-desc {
+      font-size: 12px;
+      color: #f9a8d4 !important;
+    }
+
+    .skill-pct {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--skill-color) !important;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--skill-color), #ffffff);
+      box-shadow: 0 0 12px var(--skill-color);
+    }
+
+    /* ================= PASSION / LIFESTYLE (ĐÁ BÓNG, CA HÁT, THỂ THAO) ================= */
+    .passion-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)) !important;
+      gap: 26px !important;
+    }
+
+    .passion-card {
+      background: var(--card-bg) !important;
+      border: 1px solid rgba(255, 30, 138, 0.35) !important;
+      border-radius: 22px !important;
+      padding: 28px !important;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      transition: all 0.35s ease !important;
+      box-shadow: 0 10px 30px -10px rgba(255, 30, 138, 0.25);
+    }
+
+    .passion-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--passion-color, var(--pink)), var(--cyan), var(--gold));
+    }
+
+    .passion-card:hover {
+      transform: translateY(-8px) !important;
+      border-color: var(--passion-color, var(--pink)) !important;
+      box-shadow: 0 18px 42px -10px var(--passion-color, var(--pink)) !important;
+    }
+
+    .passion-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .passion-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(255, 30, 138, 0.16);
+      color: var(--passion-color, var(--hot-pink)) !important;
+      border: 1px solid var(--passion-color, var(--pink));
+      box-shadow: 0 0 14px rgba(255, 30, 138, 0.25);
+    }
+
+    .passion-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--passion-color, var(--pink)) !important;
+      text-shadow: 0 0 12px var(--passion-color, var(--pink));
+    }
+
+    /* Sóng nhạc Equalizer Neon cho thẻ Ca Hát */
+    .cyber-eq {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 24px;
+    }
+
+    .cyber-eq span {
+      width: 4px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, var(--cyan), var(--pink));
+      box-shadow: 0 0 8px var(--pink);
+      animation: eqBounce 1s ease-in-out infinite;
+    }
+
+    .cyber-eq span:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+    .cyber-eq span:nth-child(2) { height: 22px; animation-delay: 0.3s; }
+    .cyber-eq span:nth-child(3) { height: 14px; animation-delay: 0.5s; }
+    .cyber-eq span:nth-child(4) { height: 24px; animation-delay: 0.2s; }
+    .cyber-eq span:nth-child(5) { height: 12px; animation-delay: 0.4s; }
+
+    @keyframes eqBounce {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+
+    .passion-title {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      margin-bottom: 10px !important;
+    }
+
+    .passion-desc {
+      color: #f5d0fe !important;
+      font-size: 14px !important;
+      margin-bottom: 18px !important;
+    }
+
+    .passion-list {
+      border-top: 1px dashed rgba(255, 102, 196, 0.3);
+      padding-top: 14px;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      color: #fce7f3 !important;
+    }
+
+    .passion-list i {
+      color: var(--passion-color, var(--pink));
+      margin-right: 8px;
+    }
+
+    /* ================= PROJECTS GRID (THẺ NEON ĐA SẮC) ================= */
+    .project-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)) !important;
+      gap: 28px !important;
+    }
+
+    .card {
+      background: var(--card-bg) !important;
+      border: 1px solid rgba(255, 102, 196, 0.22) !important;
+      border-radius: 22px !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      transition: all 0.35s ease !important;
+      backdrop-filter: blur(16px);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) !important;
+      border-color: var(--card-accent, var(--pink)) !important;
+      box-shadow: 0 18px 40px -12px var(--card-accent, var(--pink)) !important;
+    }
+
+    .card-media-box {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+      background: #160621;
+    }
+
+    .card-media {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      transition: transform 0.6s ease !important;
+    }
+
+    .card:hover .card-media {
+      transform: scale(1.08) !important;
+    }
+
+    .card-chip {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(12, 4, 18, 0.88);
+      color: var(--card-accent, var(--hot-pink)) !important;
+      border: 1px solid var(--card-accent, var(--pink));
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .card-body {
+      padding: 24px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      flex: 1 !important;
+      gap: 18px !important;
+      background: transparent !important;
+    }
+
+    .card-title {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      margin-bottom: 6px !important;
+    }
+
+    .card-desc {
+      color: #f5d0fe !important;
+      font-size: 14px !important;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 102, 196, 0.18);
+    }
+
+    .tag-list {
+      display: flex !important;
+      gap: 8px !important;
+      flex-wrap: wrap !important;
+    }
+
+    .tag-list li {
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      padding: 4px 12px !important;
+      border-radius: 8px !important;
+      background: rgba(255, 30, 138, 0.12) !important;
+      color: var(--card-accent, var(--hot-pink)) !important;
+      border: 1px solid rgba(255, 102, 196, 0.25) !important;
+    }
+
+    .card-link {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      transition: 0.3s;
+    }
+
+    .card-link:hover {
+      box-shadow: 0 0 18px var(--pink);
+      transform: translateX(3px);
+    }
+
+    /* ================= CONTACT FORM CYBER (GIỐNG MẪU + CHỌN CHỦ ĐỀ HỎI NHANH) ================= */
+    .contact-wrap {
+      position: relative;
+      border-radius: 26px;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--pink), var(--cyan), var(--gold), var(--purple));
+      box-shadow: 0 20px 65px -12px rgba(255, 30, 138, 0.5);
+    }
+
+    .contact-inner {
+      background: #11041a !important;
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      position: relative;
+    }
+
+    .contact-img-side {
+      position: relative;
+      min-height: 420px;
+      background: radial-gradient(circle at 50% 35%, rgba(255, 30, 138, 0.45), #09020e 75%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px;
+      border-right: 1px solid rgba(255, 30, 138, 0.3);
+      overflow: hidden;
+    }
+
+    .contact-img-side img.bg-poster {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      opacity: 0.38;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .poster-overlay {
+      position: relative;
+      z-index: 2;
+    }
+
+    .poster-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(18, 5, 28, 0.85);
+      border: 1px solid rgba(255, 102, 196, 0.45);
+      border-radius: 18px;
+      padding: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(255, 30, 138, 0.3);
+    }
+
+    .poster-card p {
+      font-size: 13px;
+      color: #fce7f3 !important;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-side {
+      padding: 44px 96px 44px 44px;
+    }
+
+    .quick-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .pill-btn {
+      cursor: pointer;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 30, 138, 0.14);
+      border: 1px solid rgba(255, 102, 196, 0.45);
+      color: #ff99d6 !important;
+      transition: 0.25s;
+    }
+
+    .pill-btn:hover {
+      background: var(--pink);
+      color: #fff !important;
+      box-shadow: 0 0 15px var(--pink);
+      transform: translateY(-2px);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--hot-pink) !important;
+      margin-bottom: 8px;
+    }
+
+    .input-field {
+      width: 100% !important;
+      padding: 13px 16px !important;
+      border-radius: 12px !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 102, 196, 0.28) !important;
+      color: #ffffff !important;
+      font-size: 14px !important;
+      font-family: inherit !important;
+      transition: 0.25s !important;
+    }
+
+    .input-field::placeholder {
+      color: rgba(249, 168, 212, 0.5) !important;
+    }
+
+    .input-field:focus {
+      outline: none !important;
+      border-color: var(--pink) !important;
+      box-shadow: 0 0 0 3px rgba(255, 30, 138, 0.35) !important;
+      background: rgba(255, 30, 138, 0.08) !important;
+    }
+
+    .cyber-alert {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(0, 245, 212, 0.12);
+      border: 1px solid var(--cyan);
+      color: var(--cyan) !important;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .social-bar {
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(24, 6, 36, 0.95);
+      border: 1px solid var(--pink);
+      border-radius: 999px;
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      box-shadow: 0 0 28px rgba(255, 30, 138, 0.45);
+    }
+
+    .social-bar a {
+      color: #ffffff !important;
+      font-size: 20px;
+      transition: 0.25s;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social-bar a:hover {
+      color: var(--hot-pink) !important;
+      transform: scale(1.25);
+      text-shadow: 0 0 12px var(--pink);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 30, 138, 0.25) !important;
+      padding: 28px 0 !important;
+      text-align: center !important;
+      color: #f9a8d4 !important;
+      font-size: 13px !important;
+    }
+
+    @media (max-width: 920px) {
+      .hero-inner, .contact-inner, .project-grid, .form-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .contact-form-side {
+        padding: 32px 24px;
+      }
+      .social-bar {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 24px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="pinkcyber">
+
+  <!-- Nền Aurora Hồng + Lưới 3D + Hạt Laser tương tác chuột -->
+  <div class="aurora-bg" aria-hidden="true"></div>
+  <div class="cyber-grid" aria-hidden="true"></div>
+  <canvas id="cyberCanvas"></canvas>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Về đầu trang">
+        <span class="brand-mark" aria-hidden="true">H</span>
+        <div>
+          <span class="brand-name">Phan Huy Hoàng</span>
+          <span class="brand-sub mono">⚡ HOÀNG·PINKY · CYBER UI</span>
+        </div>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <nav class="main-nav" aria-label="Điều hướng chính">
+          <ul class="nav-list">
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#skills">Kỹ năng</a></li>
+            <li><a href="#passion">Đam mê</a></li>
+            <li><a href="#projects">Dự án</a></li>
+            <li><a href="#contact">Hỏi đáp &amp; Liên hệ</a></li>
+          </ul>
+        </nav>
+
+        <button id="themeToggle" type="button" class="theme-btn mono">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          <span id="themeLabel">Pink·Cyber</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main id="top">
+
+    <!-- ----- SECTION 1: HERO ----- -->
+    <section id="about" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow mono">
+            <span class="pulse-dot"></span>
+            WELCOME TO MY PINK CYBER REALM · XIN CHÀO, TÔI LÀ
+          </p>
+
+          <h1 class="hero-title">Phan Huy Hoàng</h1>
+
+          <p class="hero-role">
+            <span id="typewriter" class="typewriter-text mono">Frontend Developer &amp; UI Enthusiast</span>
+            <span class="kanji-badge mono">#HoàngStriker</span>
+          </p>
+
+          <p class="hero-desc">
+            Tôi xây dựng giao diện web <strong>sạch sẽ, rực rỡ và chuẩn responsive</strong>.
+            Tốt nghiệp ngành Công nghệ thông tin, ban ngày cháy hết mình với <strong>HTML/CSS/JS</strong>,
+            buổi chiều bùng nổ trên <strong>sân cỏ bóng đá</strong> và tối đến thả hồn vào những <strong>giai điệu ca hát</strong>.
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-card pink-stat">
+              <div class="stat-num mono">04+</div>
+              <div class="stat-lbl">Dự án Web tiêu biểu</div>
+            </div>
+            <div class="stat-card cyan-stat">
+              <div class="stat-num mono">99%</div>
+              <div class="stat-lbl">Năng lượng Sân cỏ</div>
+            </div>
+            <div class="stat-card gold-stat">
+              <div class="stat-num mono">24/7</div>
+              <div class="stat-lbl">Ca hát &amp; Thể thao</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">
+              <i class="fas fa-comments"></i> Đặt câu hỏi &amp; Giao lưu
+            </a>
+            <a class="btn btn-outline" href="#projects">
+              <i class="fas fa-bolt"></i> Xem dự án
+            </a>
+          </div>
+        </div>
+
+        <figure class="hero-avatar">
+          <div class="avatar-holo">
+            <img
+              src="./assets/img/avatar.jpg"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27400%27 viewBox=%270 0 400 400%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%25%27 y1=%270%25%27 x2=%27100%25%27 y2=%27100%25%27%3E%3Cstop offset=%270%25%27 stop-color=%27%23ff1e8a%27/%3E%3Cstop offset=%2750%25%27 stop-color=%27%23b5179e%27/%3E%3Cstop offset=%27100%25%27 stop-color=%27%2300f5d4%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%27400%27 height=%27400%27 fill=%27url(%23g)%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-family=%27sans-serif%27 font-size=%2784%27 font-weight=%27800%27 fill=%27%23fff%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27%3EPHH%3C/text%3E%3C/svg%3E'"
+              alt="Ảnh đại diện của Phan Huy Hoàng"
+              width="320" height="320" />
+            <div class="floating-tag top-right mono">
+              <i class="fas fa-futbol"></i> STRIKER #10
+            </div>
+            <div class="floating-tag mid-right mono">
+              <i class="fas fa-microphone-lines"></i> VOCAL LOVER
+            </div>
+            <div class="floating-tag bottom-left mono">
+              <i class="fas fa-code"></i> FRONTEND DEV
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- DẢI BĂNG CHUYỀN CYBER -->
+    <div class="cyber-marquee mono" aria-hidden="true">
+      <div class="marquee-track">
+        💖 PHAN HUY HOÀNG <span>//</span> FRONTEND DEVELOPER <span>//</span> ⚽ ĐAM MÊ ĐÁ BÓNG SÂN PHỦI <span>//</span> 🎤 CA HÁT &amp; ACOUSTIC CHILL <span>//</span> 🔥 THỂ THAO NĂNG ĐỘNG <span>//</span> HTML5 · CSS3 · JAVASCRIPT <span>//</span>
+        💖 PHAN HUY HOÀNG <span>//</span> FRONTEND DEVELOPER <span>//</span> ⚽ ĐAM MÊ ĐÁ BÓNG SÂN PHỦI <span>//</span> 🎤 CA HÁT &amp; ACOUSTIC CHILL <span>//</span> 🔥 THỂ THAO NĂNG ĐỘNG <span>//</span> HTML5 · CSS3 · JAVASCRIPT <span>//</span>
+      </div>
+    </div>
+
+    <!-- ----- SECTION 2: KỸ NĂNG ----- -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow mono">// TECH STACK &amp; ARSENAL</span>
+          <h2 class="section-title">Kỹ năng công nghệ</h2>
+          <p class="section-sub">Những công nghệ và kỹ năng tôi sử dụng thường xuyên để tạo nên giao diện đỉnh cao.</p>
+        </div>
+
+        <ul class="skill-grid">
+          <li class="skill-chip" style="--skill-color: #ff1e8a;">
+            <div class="skill-top">
+              <div class="skill-info">
+                <span class="skill-icon"><i class="fab fa-html5"></i></span>
+                <div>
+                  <div class="skill-name">HTML5</div>
+                  <div class="skill-desc">Semantic Markup &amp; Chuẩn SEO</div>
+                </div>
+              </div>
+              <span class="skill-pct mono">95%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </li>
+
+          <li class="skill-chip" style="--skill-color: #00f5d4;">
+            <div class="skill-top">
+              <div class="skill-info">
+                <span class="skill-icon"><i class="fab fa-css3-alt"></i></span>
+                <div>
+                  <div class="skill-name">CSS3 / Flexbox / Grid</div>
+                  <div class="skill-desc">Modern Layout &amp; Pink Neon Effects</div>
+                </div>
+              </div>
+              <span class="skill-pct mono">92%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+          </li>
+
+          <li class="skill-chip" style="--skill-color: #ffbe0b;">
+            <div class="skill-top">
+              <div class="skill-info">
+                <span class="skill-icon"><i class="fab fa-js"></i></span>
+                <div>
+                  <div class="skill-name">JavaScript (ES6+)</div>
+                  <div class="skill-desc">DOM, Fetch API &amp; Hiệu ứng động</div>
+                </div>
+              </div>
+              <span class="skill-pct mono">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </li>
+
+          <li class="skill-chip" style="--skill-color: #ff66c4;">
+            <div class="skill-top">
+              <div class="skill-info">
+                <span class="skill-icon"><i class="fas fa-mobile-screen-button"></i></span>
+                <div>
+                  <div class="skill-name">Responsive Design</div>
+                  <div class="skill-desc">Mobile-First &amp; Đa thiết bị</div>
+                </div>
+              </div>
+              <span class="skill-pct mono">95%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </li>
+
+          <li class="skill-chip" style="--skill-color: #b5179e;">
+            <div class="skill-top">
+              <div class="skill-info">
+                <span class="skill-icon"><i class="fab fa-git-alt"></i></span>
+                <div>
+                  <div class="skill-name">Git &amp; GitHub</div>
+                  <div class="skill-desc">Quản lý mã nguồn &amp; Teamwork</div>
+                </div>
+              </div>
+              <span class="skill-pct mono">90%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </li>
+
+          <li class="skill-chip" style="--skill-color: #4cc9f0;">
+            <div class="skill-top">
+              <div class="skill-info">
+                <span class="skill-icon"><i class="fab fa-figma"></i></span>
+                <div>
+                  <div class="skill-name">Figma / Wireframe</div>
+                  <div class="skill-desc">Thiết kế giao diện UI/UX</div>
+                </div>
+              </div>
+              <span class="skill-pct mono">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ----- SECTION 3: ĐAM MÊ CÁ NHÂN (CA HÁT, ĐÁ BÓNG, THỂ THAO) ----- -->
+    <section id="passion" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow mono">// LIFESTYLE · SPORTS · VOCAL</span>
+          <h2 class="section-title">Đam mê &amp; Cá tính riêng</h2>
+          <p class="section-sub">Ngoài màn hình code, đây là nơi tôi đốt cháy năng lượng và tìm kiếm cảm hứng sáng tạo.</p>
+        </div>
+
+        <div class="passion-grid">
+          <!-- Đá bóng -->
+          <article class="passion-card" style="--passion-color: #ff1e8a;">
+            <div class="passion-head">
+              <span class="passion-badge mono"><i class="fas fa-futbol"></i> FOOTBALL STRIKER</span>
+              <span class="passion-num mono">#10</span>
+            </div>
+            <h3 class="passion-title">Cháy hết mình trên Sân cỏ</h3>
+            <p class="passion-desc">
+              Những pha bứt tốc, phối hợp đồng đội và sút tung lưới đối phương giúp tôi rèn phản xạ nhạy bén cùng tinh thần chiến đấu không bỏ cuộc.
+            </p>
+            <ul class="passion-list mono">
+              <li><i class="fas fa-bolt"></i> Vị trí: Tiền đạo cánh / Tiền vệ công</li>
+              <li><i class="fas fa-calendar-check"></i> Lịch đá: 3 trận sân phủi / tuần</li>
+              <li><i class="fas fa-fire"></i> Tuyệt kỹ: Bứt tốc biên &amp; Cứa lòng góc xa</li>
+            </ul>
+          </article>
+
+          <!-- Ca hát -->
+          <article class="passion-card" style="--passion-color: #00f5d4;">
+            <div class="passion-head">
+              <span class="passion-badge mono"><i class="fas fa-microphone-lines"></i> SINGING &amp; MUSIC</span>
+              <div class="cyber-eq" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <h3 class="passion-title">Phiêu cùng Âm nhạc &amp; Ca hát</h3>
+            <p class="passion-desc">
+              Âm nhạc là nguồn năng lượng nuôi dưỡng tâm hồn nghệ sĩ khi thiết kế UI. Từ những bản Ballad ngọt ngào đến Acoustic sôi động, cầm mic lên là hết mình!
+            </p>
+            <ul class="passion-list mono">
+              <li><i class="fas fa-music"></i> Dòng nhạc: Pop Ballad, Indie, Acoustic</li>
+              <li><i class="fas fa-headphones"></i> Thói quen: Vừa nghêu ngao hát vừa fix bug</li>
+              <li><i class="fas fa-star"></i> Sẵn sàng giao lưu văn nghệ mọi cuộc vui</li>
+            </ul>
+          </article>
+
+          <!-- Thể thao -->
+          <article class="passion-card" style="--passion-color: #ffbe0b;">
+            <div class="passion-head">
+              <span class="passion-badge mono"><i class="fas fa-dumbbell"></i> ATHLETIC SPIRIT</span>
+              <span class="passion-num mono">100%⚡</span>
+            </div>
+            <h3 class="passion-title">Thể thao &amp; Kỷ luật thép</h3>
+            <p class="passion-desc">
+              Duy trì thể lực dẻo dai với chạy bộ, cầu lông và tập luyện mỗi ngày để giữ đầu óc luôn tỉnh táo, chinh phục mọi deadline dự án khó nhằn nhất.
+            </p>
+            <ul class="passion-list mono">
+              <li><i class="fas fa-person-running"></i> Bộ môn: Chạy bộ, Cầu lông, Gym</li>
+              <li><i class="fas fa-heart-pulse"></i> Năng lượng tích cực, bền bỉ 24/7</li>
+              <li><i class="fas fa-handshake"></i> Luôn mở kèo giao lưu thể thao cuối tuần</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----- SECTION 4: DỰ ÁN TIÊU BIỂU ----- -->
+    <section id="projects" class="section section-muted">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow mono">// FEATURED SHOWCASE</span>
+          <h2 class="section-title">Dự án tiêu biểu</h2>
+          <p class="section-sub">Một vài sản phẩm tâm huyết tôi đã thực hiện.</p>
+        </div>
+
+        <div class="project-grid">
+          <!-- Dự án 1 -->
+          <article class="card" style="--card-accent: #ff1e8a;">
+            <div class="card-media-box">
+              <img class="card-media"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360' viewBox='0 0 600 360'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232b0528'/%3E%3Cstop offset='50%25' stop-color='%23ff1e8a'/%3E%3Cstop offset='100%25' stop-color='%230d021a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g1)'/%3E%3Ccircle cx='480' cy='80' r='110' fill='%2300f5d4' opacity='0.2'/%3E%3Ctext x='50%25' y='50%25' font-family='Segoe UI, sans-serif' font-size='42' font-weight='800' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3ELANDING PAGE%3C/text%3E%3C/svg%3E"
+                alt="Ảnh minh họa dự án Landing Page" width="600" height="360" />
+              <span class="card-chip mono">⚡ UI SHOWCASE</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <h3 class="card-title">Landing Page Sản Phẩm</h3>
+                <p class="card-desc">Trang giới thiệu sản phẩm responsive, tối ưu tốc độ tải và SEO cơ bản với tone màu hiện đại.</p>
+              </div>
+              <div class="card-bottom">
+                <ul class="tag-list mono">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>Grid</li>
+                </ul>
+                <a class="card-link" href="#contact">Xem chi tiết →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dự án 2 -->
+          <article class="card" style="--card-accent: #00f5d4;">
+            <div class="card-media-box">
+              <img class="card-media"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360' viewBox='0 0 600 360'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23061a2e'/%3E%3Cstop offset='50%25' stop-color='%23b5179e'/%3E%3Cstop offset='100%25' stop-color='%2300f5d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g2)'/%3E%3Ctext x='50%25' y='50%25' font-family='Segoe UI, sans-serif' font-size='42' font-weight='800' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3ETODO WEB APP%3C/text%3E%3C/svg%3E"
+                alt="Ảnh minh họa dự án Todo App" width="600" height="360" />
+              <span class="card-chip mono">💎 WEB APP</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <h3 class="card-title">Ứng dụng Todo List</h3>
+                <p class="card-desc">Ứng dụng quản lý công việc, lịch đá bóng và tập luyện với lưu trữ cục bộ và giao diện tối giản.</p>
+              </div>
+              <div class="card-bottom">
+                <ul class="tag-list mono">
+                  <li>JavaScript</li>
+                  <li>Flexbox</li>
+                </ul>
+                <a class="card-link" href="#contact">Xem chi tiết →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dự án 3 -->
+          <article class="card" style="--card-accent: #ffbe0b;">
+            <div class="card-media-box">
+              <img class="card-media"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360' viewBox='0 0 600 360'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232e0827'/%3E%3Cstop offset='50%25' stop-color='%23ff66c4'/%3E%3Cstop offset='100%25' stop-color='%23ffbe0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g3)'/%3E%3Ctext x='50%25' y='50%25' font-family='Segoe UI, sans-serif' font-size='38' font-weight='800' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3EWEATHER DASHBOARD%3C/text%3E%3C/svg%3E"
+                alt="Ảnh minh họa dự án Weather Dashboard" width="600" height="360" />
+              <span class="card-chip mono">🔥 API DASHBOARD</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <h3 class="card-title">Weather Dashboard</h3>
+                <p class="card-desc">Bảng điều khiển thời tiết lấy dữ liệu từ API công khai, hiển thị theo thẻ trực quan trước mỗi trận bóng.</p>
+              </div>
+              <div class="card-bottom">
+                <ul class="tag-list mono">
+                  <li>API</li>
+                  <li>Grid</li>
+                </ul>
+                <a class="card-link" href="#contact">Xem chi tiết →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dự án 4 -->
+          <article class="card" style="--card-accent: #ff66c4;">
+            <div class="card-media-box">
+              <img class="card-media"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360' viewBox='0 0 600 360'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231f0429'/%3E%3Cstop offset='50%25' stop-color='%23f72585'/%3E%3Cstop offset='100%25' stop-color='%237209b7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g4)'/%3E%3Ctext x='50%25' y='50%25' font-family='Segoe UI, sans-serif' font-size='42' font-weight='800' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3EPERSONAL BLOG%3C/text%3E%3C/svg%3E"
+                alt="Ảnh minh họa dự án Blog cá nhân" width="600" height="360" />
+              <span class="card-chip mono">👑 LIFESTYLE &amp; CODE</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <h3 class="card-title">Blog Cá Nhân</h3>
+                <p class="card-desc">Blog tĩnh với bố cục dạng lưới chia sẻ kiến thức lập trình, âm nhạc và thể thao trên mọi thiết bị.</p>
+              </div>
+              <div class="card-bottom">
+                <ul class="tag-list mono">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                </ul>
+                <a class="card-link" href="#contact">Xem chi tiết →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----- SECTION 5: HỎI ĐÁP & LIÊN HỆ CYBER (GIỐNG MẪU) ----- -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-inner">
+
+            <!-- Cột Trái: Poster Cyber Hồng + Thông tin trực tiếp -->
+            <div class="contact-img-side">
+              <img class="bg-poster" src="./assets/img/avatar.jpg" onerror="this.style.display='none'" alt="Contact Poster" />
+
+              <div class="poster-overlay">
+                <span class="eyebrow mono" style="margin-bottom: 12px;">
+                  <span class="pulse-dot"></span> ONLINE 24/7
+                </span>
+                <h3 style="font-size: 28px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 10px;">
+                  Kết nối cùng <br/>
+                  <span style="color: var(--hot-pink); text-shadow: 0 0 18px var(--pink);">Phan Huy Hoàng</span>
+                </h3>
+                <p style="font-size: 14px; color: #f5d0fe;">
+                  Code mượt • Đá bóng nhiệt • Ca hát hết mình!
+                </p>
+              </div>
+
+              <div class="poster-card mono">
+                <p><i class="fas fa-envelope" style="color:var(--hot-pink); margin-right:8px;"></i> hoangphanhuy31206@gmail.com</p>
+                <p><i class="fab fa-github" style="color:var(--cyan); margin-right:8px;"></i> github.com/phanhuyhoang</p>
+                <p style="margin-bottom:0;"><i class="fab fa-linkedin" style="color:var(--gold); margin-right:8px;"></i> linkedin.com/in/phanhuyhoang</p>
+              </div>
+            </div>
+
+            <!-- Cột Phải: Form nhập thông tin hỏi đáp & giao lưu -->
+            <div class="contact-form-side">
+              <span class="section-eyebrow mono">// ASK ME ANYTHING &amp; CONNECT</span>
+              <h2 class="section-title">Bạn muốn hỏi hay giao lưu gì?</h2>
+              <p class="section-sub" style="margin-bottom: 16px;">
+                Mở cho các cơ hội thực tập, việc làm Frontend, kèo đá bóng giao hữu hoặc giao lưu âm nhạc. Bấm chọn nhanh chủ đề hoặc nhập lời nhắn bên dưới nhé!
+              </p>
+
+              <!-- Nút bấm chọn nhanh câu hỏi -->
+              <div class="quick-pills">
+                <button type="button" class="pill-btn mono" onclick="setTopic('💻 Mời hợp tác / Tuyển dụng Frontend')">💻 Tuyển dụng Frontend</button>
+                <button type="button" class="pill-btn mono" onclick="setTopic('⚽ Rủ kèo đá bóng giao hữu cuối tuần')">⚽ Rủ kèo đá bóng</button>
+                <button type="button" class="pill-btn mono" onclick="setTopic('🎤 Giao lưu ca hát & Acoustic')">🎤 Giao lưu ca hát</button>
+                <button type="button" class="pill-btn mono" onclick="setTopic('🔥 Hỏi kinh nghiệm học Web & Thể thao')">🔥 Hỏi chuyện học Code</button>
+              </div>
+
+              <form id="cyberForm" action="#" method="POST">
+                <div class="form-grid">
+                  <div>
+                    <label class="form-label mono">Họ tên của bạn*</label>
+                    <input type="text" id="userName" placeholder="Nhập tên đầy đủ..." required class="input-field" />
+                  </div>
+                  <div>
+                    <label class="form-label mono">Email / SĐT*</label>
+                    <input type="text" id="userEmail" placeholder="Email hoặc số điện thoại..." required class="input-field" />
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 18px;">
+                  <label class="form-label mono">Chủ đề muốn hỏi / Giao lưu</label>
+                  <input type="text" id="userTopic" placeholder="Chọn nút phía trên hoặc tự nhập chủ đề..." class="input-field" />
+                </div>
+
+                <div style="margin-bottom: 22px;">
+                  <label class="form-label mono">Nội dung câu hỏi / Lời nhắn*</label>
+                  <textarea id="userMsg" placeholder="Nhập câu hỏi, lời mời đá bóng, giao lưu ca hát hoặc công việc..." rows="4" required class="input-field"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  <span>Gửi tin nhắn ngay</span>
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+
+                <div id="cyberAlert" class="cyber-alert mono" style="display:none;">
+                  ⚡ Đã gửi thành công! Cảm ơn bạn, Phan Huy Hoàng sẽ phản hồi sớm nhất!
+                </div>
+              </form>
+            </div>
+
+            <!-- Thanh Social nổi bên phải giống mẫu -->
+            <div class="social-bar">
+              <a href="mailto:hoangphanhuy31206@gmail.com" title="Gửi Email"><i class="fas fa-envelope"></i></a>
+              <a href="https://github.com/phanhuyhoang" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://linkedin.com/in/phanhuyhoang" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container mono">
+      © 2026 Phan Huy Hoàng · Thiết kế &amp; xây dựng với Neon Pink Cyber UI, HTML5, CSS3, Bóng đá &amp; Âm nhạc 💖
+    </div>
+  </footer>
+
+  <!-- SCRIPT: Đổi Theme Hồng + Chữ gõ tự động + Điền nhanh câu hỏi + Hạt Neon Laser tương tác chuột -->
+  <script>
+    // 1. Chuyển đổi 3 hệ màu Hồng Cyber
+    const themes = [
+      { id: 'pinkcyber', label: 'Pink·Cyber' },
+      { id: 'sakura', label: 'Sakura·Neon' },
+      { id: 'striker', label: 'Striker·Rose' }
+    ];
+    let tIdx = 0;
+    const tBtn = document.getElementById('themeToggle');
+    const tLbl = document.getElementById('themeLabel');
+    tBtn.addEventListener('click', () => {
+      tIdx = (tIdx + 1) % themes.length;
+      document.body.setAttribute('data-theme', themes[tIdx].id);
+      tLbl.textContent = themes[tIdx].label;
+    });
+
+    // 2. Hiệu ứng gõ chữ Typewriter ở phần giới thiệu
+    const roles = [
+      "Frontend Developer & UI Enthusiast",
+      "Tiền Đạo Sân Phủi & Sports Lover ⚽",
+      "Vocalist Đam Mê Ca Hát & Âm Nhạc 🎤"
+    ];
+    let rIdx = 0, charIdx = 0, deleting = false;
+    const typeEl = document.getElementById('typewriter');
+    function typeLoop() {
+      const current = roles[rIdx];
+      typeEl.textContent = current.substring(0, charIdx);
+      if (!deleting && charIdx < current.length) {
+        charIdx++;
+        setTimeout(typeLoop, 55);
+      } else if (deleting && charIdx > 0) {
+        charIdx--;
+        setTimeout(typeLoop, 30);
+      } else {
+        deleting = !deleting;
+        if (!deleting) rIdx = (rIdx + 1) % roles.length;
+        setTimeout(typeLoop, deleting ? 1800 : 300);
+      }
+    }
+    typeLoop();
+
+    // 3. Điền nhanh chủ đề hỏi đáp & xử lý gửi Form
+    function setTopic(text) {
+      const topicField = document.getElementById('userTopic');
+      const msgField = document.getElementById('userMsg');
+      topicField.value = text;
+      msgField.focus();
+    }
+
+    document.getElementById('cyberForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const alertBox = document.getElementById('cyberAlert');
+      alertBox.style.display = 'block';
+      this.reset();
+      setTimeout(() => {
+        alertBox.style.display = 'none';
+      }, 5000);
+    });
+
+    // 4. Canvas hạt Neon Hồng nối tia Laser theo chuột
+    const canvas = document.getElementById('cyberCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const mouse = { x: -999, y: -999 };
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    const colors = ['#ff1e8a', '#ff66c4', '#00f5d4', '#ffbe0b', '#b5179e'];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.85,
+        vy: (Math.random() - 0.5) * 0.85,
+        r: Math.random() * 2.4 + 1,
+        c: colors[i % colors.length]
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.c;
+        ctx.fill();
+
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 155) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(255, 30, 138, ${1 - dist / 155})`;
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+        }
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+
+</html>
